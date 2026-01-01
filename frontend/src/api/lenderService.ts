@@ -69,13 +69,12 @@ export const lenderService = {
 
   /**
    * Upload PDF and extract lender information
+   * The lender name is automatically extracted from the PDF
    * @param file - PDF file to upload
-   * @param lenderName - Name of the lender
    */
-  async uploadPDF(file: File, lenderName: string): Promise<PDFUploadResponse> {
+  async uploadPDF(file: File): Promise<PDFUploadResponse> {
     const formData = new FormData();
     formData.append('pdf_file', file);
-    formData.append('lender_name', lenderName);
 
     const response = await apiClient.post<PDFUploadResponse>('/lender/upload-pdf', formData, {
       headers: {

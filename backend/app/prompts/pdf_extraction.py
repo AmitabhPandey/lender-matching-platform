@@ -1,7 +1,7 @@
 """Prompts for PDF criteria extraction using Gemini."""
 
 
-def get_criteria_extraction_prompt(lender_name: str) -> str:
+def get_criteria_extraction_prompt() -> str:
     """
     Get the prompt for extracting lending criteria from PDF.
     
@@ -12,7 +12,7 @@ def get_criteria_extraction_prompt(lender_name: str) -> str:
         Formatted prompt string
     """
     return f"""
-You are analyzing a lender guidelines document for {lender_name}. 
+You are analyzing a lender guidelines document for a lender. 
 Extract all lending criteria and requirements from this PDF document.
 
 Please provide the extracted information in the following JSON format:

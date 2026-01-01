@@ -97,13 +97,14 @@ export function useDeleteLender() {
 
 /**
  * Upload PDF and create lender
+ * The lender name is automatically extracted from the PDF
  */
 export function useUploadPDF() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ file, lenderName }: { file: File; lenderName: string }) =>
-      lenderService.uploadPDF(file, lenderName),
+    mutationFn: (file: File) =>
+      lenderService.uploadPDF(file),
     onSuccess: () => {
       // Invalidate lenders list
       queryClient.invalidateQueries({ queryKey: lenderKeys.lists() });

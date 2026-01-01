@@ -90,12 +90,12 @@ async def delete_lender(lender_id: str):
 
 @router.post("/upload-pdf", response_model=PDFUploadResponseDTO, status_code=status.HTTP_201_CREATED)
 async def upload_lender_pdf(
-    pdf_file: UploadFile = File(...),
-    lender_name: str = Form(...)
+    pdf_file: UploadFile = File(...)
 ):
     """
     Upload a PDF document and extract lender criteria using AI.
     Creates both the lender and associated criteria.
+    The lender name is automatically extracted from the PDF.
     """
     try:
         # Validate file type
@@ -105,10 +105,9 @@ async def upload_lender_pdf(
         # Read PDF content
         pdf_content = await pdf_file.read()
         
-        # Extract criteria using Gemini
+        # Extract criteria using Gemini (lender name will be extracted from PDF)
         extracted_data = await pdf_service.extract_criteria_from_pdf(
             pdf_content=pdf_content,
-            lender_name=lender_name
         )
         
         logger.info(f"Extracted data from PDF: {extracted_data}")
@@ -122,9 +121,14 @@ async def upload_lender_pdf(
         if business_model and isinstance(business_model, dict):
             business_model = {k: v for k, v in business_model.items() if v is not None} or None
         
-        # Create lender
+        # Create lender - use extracted name or filename as fallback
+        lender_name = extracted_data.get("lender_name")
+        if not lender_name:
+            # Fallback to PDF filename without extension
+            lender_name = pdf_file.filename.replace('.pdf', '').replace('_', ' ').title()
+        
         lender_create = LenderCreateDTO(
-            name=extracted_data.get("lender_name", lender_name),
+            name=lender_name,
             contact=contact,
             business_model=business_model
         )

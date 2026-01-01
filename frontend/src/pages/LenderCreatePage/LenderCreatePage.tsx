@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Layout } from "@components/Layout";
 import { Card } from "@components/Card";
 import { Button } from "@components/Button";
-import { Input } from "@components/Input";
 import { ErrorMessage } from "@components/ErrorMessage";
 import { Loading } from "@components/Loading";
 import { useUploadPDF } from "@hooks/useLenders";
@@ -14,21 +13,17 @@ export const LenderCreatePage: React.FC = () => {
   const uploadPDFMutation = useUploadPDF();
 
   const [pdfFile, setPdfFile] = useState<File | null>(null);
-  const [lenderName, setLenderName] = useState("");
   const [isDragging, setIsDragging] = useState(false);
 
   const handlePDFSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!pdfFile || !lenderName) {
+    if (!pdfFile) {
       return;
     }
 
     try {
-      const result = await uploadPDFMutation.mutateAsync({
-        file: pdfFile,
-        lenderName,
-      });
+      const result = await uploadPDFMutation.mutateAsync(pdfFile);
       navigate(`/lenders/${result.lender_id}`);
     } catch (error) {
       console.error("Failed to upload PDF:", error);
@@ -95,16 +90,8 @@ export const LenderCreatePage: React.FC = () => {
               <h2>Upload PDF Document</h2>
               <p className={styles.description}>
                 Upload a PDF document containing lender criteria. Our AI will
-                extract and structure the information automatically.
+                automatically extract the lender name and structure all information.
               </p>
-
-              <Input
-                label="Lender Name"
-                value={lenderName}
-                onChange={(e) => setLenderName(e.target.value)}
-                required
-                placeholder="Enter lender name (e.g., Advantage+ Financing)"
-              />
 
               <div className={styles.uploadSection}>
                 <label className={styles.uploadLabel}>
@@ -164,9 +151,9 @@ export const LenderCreatePage: React.FC = () => {
             <div className={styles.actions}>
               <Button
                 type="submit"
-                disabled={isLoading || !pdfFile || !lenderName}
+                disabled={isLoading || !pdfFile}
               >
-                {isLoading ? <Loading size="small" /> : "Upload & Process PDF"}
+                {isLoading ? "Processing..." : "Upload & Process PDF"}
               </Button>
             </div>
 

@@ -27,7 +27,6 @@ class PDFProcessingService:
     async def extract_criteria_from_pdf(
         self, 
         pdf_content: bytes, 
-        lender_name: str
     ) -> dict:
         """
         Extract lending criteria from PDF using Gemini API.
@@ -43,7 +42,7 @@ class PDFProcessingService:
             ValueError: If JSON parsing fails
             Exception: If Gemini API call fails
         """
-        prompt = get_criteria_extraction_prompt(lender_name)
+        prompt = get_criteria_extraction_prompt()
         
         # Encode PDF to base64
         pdf_base64 = base64.b64encode(pdf_content).decode('utf-8')
