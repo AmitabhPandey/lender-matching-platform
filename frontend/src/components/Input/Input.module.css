@@ -1,0 +1,61 @@
+/* Professional Input Component Styles */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  display: block;
+}
+
+.required {
+  color: #b91c1c;
+  margin-left: 4px;
+}
+
+.input {
+  padding: 10px 14px;
+  font-size: 0.9375rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  background-color: white;
+  color: #1f2937;
+}
+
+.input:focus {
+  border-color: #1e40af;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+.input:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.input.error {
+  border-color: #dc2626;
+}
+
+.input.error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.errorMessage {
+  font-size: 0.8125rem;
+  color: #dc2626;
+  margin-top: 4px;
+}

@@ -1,0 +1,83 @@
+/* CriteriaList Component Styles */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.categoryCard {
+  padding: 20px;
+}
+
+.categoryTitle {
+  margin: 0 0 16px 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-transform: capitalize;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+.criteriaList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.criteriaItem {
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.criteriaItem:last-child {
+  border-bottom: none;
+}
+
+.criteriaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.criteriaName {
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.9375rem;
+}
+
+.requiredBadge {
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 10px;
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.criteriaValue {
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.criteriaDescription {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+.empty p {
+  font-size: 1rem;
+  margin: 0;
+}
