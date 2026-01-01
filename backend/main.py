@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.core.database import connect_to_mongo, close_mongo_connection
-from app.api.routes import lender_routes, criteria_routes
+from app.api.routes import lender_routes, criteria_routes, application_routes
 import uvicorn
 
 @asynccontextmanager
@@ -36,6 +36,7 @@ app.add_middleware(
 # Include routers
 app.include_router(lender_routes.router, prefix="/api")
 app.include_router(criteria_routes.router, prefix="/api")
+app.include_router(application_routes.router, prefix="/api")
 
 
 @app.get("/")

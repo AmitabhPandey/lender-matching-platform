@@ -6,6 +6,7 @@ import { LendersPage } from './pages/LendersPage';
 import { LenderCreatePage } from './pages/LenderCreatePage';
 import { LenderEditPage } from './pages/LenderEditPage';
 import { LenderDetailPage } from './pages/LenderDetailPage';
+import { LoanApplicationPage } from './pages/LoanApplicationPage';
 import './App.css';
 
 // Create a client
@@ -29,6 +30,7 @@ function App() {
           <Route path="/lenders/new" element={<LenderCreatePage />} />
           <Route path="/lenders/:id/edit" element={<LenderEditPage />} />
           <Route path="/lenders/:id" element={<LenderDetailPage />} />
+          <Route path="/apply" element={<LoanApplicationPage />} />
           {/* Catch-all route */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

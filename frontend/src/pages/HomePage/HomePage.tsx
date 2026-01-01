@@ -21,7 +21,10 @@ export const HomePage: React.FC = () => {
             and find the perfect lending partners for your needs.
           </p>
           <div className={styles.actions}>
-            <Button onClick={() => navigate('/lenders')} size="large">
+            <Button onClick={() => navigate('/apply')} size="large">
+              Apply for Loan
+            </Button>
+            <Button onClick={() => navigate('/lenders')} variant="secondary" size="large">
               View All Lenders
             </Button>
             <Button onClick={() => navigate('/lenders/new')} variant="secondary" size="large">
